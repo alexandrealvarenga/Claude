@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Roteiro de inglês B1 → C2 · Ciclo 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ECF0EC; --surface:#F8FAF8; --ink:#17324D; --text:#22303B; --muted:#5A6A76;
+  --line:#C9D2CD; --mark:#F3C23D; --mark-ink:#17324D; --teal:#2B7A68; --empty:#DCE3DF;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1E2B; --surface:#162a3a; --ink:#E6EEF3; --text:#D3DDE4; --muted:#93A6B4;
+    --line:#2A4052; --mark:#E7B829; --mark-ink:#0F1E2B; --teal:#59BFA6; --empty:#203546;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1E2B; --surface:#162a3a; --ink:#E6EEF3; --text:#D3DDE4; --muted:#93A6B4;
+  --line:#2A4052; --mark:#E7B829; --mark-ink:#0F1E2B; --teal:#59BFA6; --empty:#203546;
+  color-scheme: dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--text);font-family:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:1rem;line-height:1.55}
+h1,h2,h3,h4{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",system-ui,sans-serif;color:var(--ink);line-height:1.15;margin:0}
+a{color:var(--teal)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+/* hero */
+.hero{padding:32px 0 24px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end}
+.hero h1{font-size:clamp(1.8rem,4.2vw,2.8rem);font-weight:800;letter-spacing:-.02em}
+.hero p{margin:.6rem 0 0;color:var(--muted);max-width:56ch}
+.pct{text-align:right}
+.pct b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(3.4rem,10vw,5.6rem);line-height:.9;color:var(--ink);letter-spacing:-.04em}
+.pct span{color:var(--muted);font-size:.95rem}
+.bar{height:10px;border-radius:99px;background:var(--empty);overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;width:0;background:var(--mark);transition:width .4s ease}
+
+/* stamp grid */
+.grid-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:28px}
+.grid-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.grid-head h2{font-size:1.05rem}
+.save{font-size:.85rem;color:var(--muted)}
+.stamps{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px}
+.col{display:grid;gap:4px}
+.col .lbl{font-size:.75rem;color:var(--muted);text-align:center;background:none;border:0;padding:0 0 2px;cursor:pointer}
+.col.cur .lbl{color:var(--ink);font-weight:700}
+.sq{height:22px;border-radius:5px;background:var(--empty);border:0;cursor:pointer;padding:0;position:relative}
+.sq.done{background:var(--mark)}
+.sq.done::after{content:"";position:absolute;left:50%;top:50%;width:5px;height:10px;margin:-7px 0 0 -3px;border:solid var(--mark-ink);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.legend{display:flex;gap:16px;margin-top:10px;font-size:.8rem;color:var(--muted)}
+
+/* week tabs */
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:18px;scrollbar-width:thin}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:transparent;border-radius:99px;padding:6px 14px;cursor:pointer;font-size:.9rem;white-space:nowrap}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tab small{opacity:.75;margin-left:4px}
+
+/* week */
+.week-top{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:start;margin-bottom:22px}
+.emoji{font-size:2.6rem;line-height:1}
+.week-top h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.015em}
+.week-top .kicker{color:var(--muted);font-size:.95rem;margin-bottom:2px}
+.week-top p{margin:.4rem 0 0;max-width:62ch}
+.wk-bar{display:flex;align-items:center;gap:10px;margin-top:10px;color:var(--muted);font-size:.9rem}
+.wk-bar .bar{flex:0 0 160px;margin:0}
+
+.layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:24px;align-items:start}
+section.block{margin-bottom:24px}
+section.block > h3{font-size:1.1rem;margin-bottom:10px}
+
+/* days */
+.day{border:1px solid var(--line);background:var(--surface);border-radius:12px;margin-bottom:8px;overflow:hidden}
+.day-row{display:flex;align-items:center;gap:12px;padding:10px 14px}
+.check{flex:0 0 auto;width:28px;height:28px;border-radius:7px;border:2px solid var(--line);background:transparent;cursor:pointer;position:relative}
+.check[aria-pressed="true"]{background:var(--mark);border-color:var(--mark)}
+.check[aria-pressed="true"]::after{content:"";position:absolute;left:8px;top:3px;width:7px;height:13px;border:solid var(--mark-ink);border-width:0 3px 3px 0;transform:rotate(45deg)}
+.day-open{flex:1;display:flex;align-items:center;gap:12px;background:none;border:0;text-align:left;cursor:pointer;padding:4px 0;min-width:0}
+.day-open .d{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;color:var(--ink);width:3.2em;flex:0 0 auto}
+.day-open .t{flex:1;min-width:0}
+.day-open .m{color:var(--muted);font-size:.85rem;flex:0 0 auto}
+.chev{flex:0 0 auto;width:10px;height:10px;border:solid var(--muted);border-width:0 2px 2px 0;transform:rotate(45deg);transition:transform .2s;margin-right:4px}
+.day.open .chev{transform:rotate(-135deg)}
+.day.isdone .day-open .t{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--mark);text-decoration-thickness:2px}
+.day-body{display:none;padding:2px 16px 16px 54px}
+.day.open .day-body{display:block}
+.task{display:grid;grid-template-columns:3.6em minmax(0,1fr);gap:10px;padding:10px 0;border-top:1px dashed var(--line)}
+.task:first-child{border-top:0}
+.task .min{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;color:var(--ink);font-size:1.05rem}
+.task .min small{display:block;font-family:"Atkinson Hyperlegible",sans-serif;font-weight:400;font-size:.75rem;color:var(--muted)}
+.task h4{font-size:1rem;margin-bottom:2px}
+.task .res{font-size:.88rem;color:var(--muted);margin:2px 0 4px}
+.task p{margin:.2rem 0}
+.prompt{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.88rem;margin-top:6px;position:relative}
+.prompt button{margin-top:6px}
+.daywords{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.daywords span{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:2px 8px;font-size:.88rem}
+.extra{margin-top:10px;font-size:.88rem;color:var(--muted)}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:.88rem}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* side */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.grammar h4{font-size:1.15rem;margin-bottom:6px}
+.grammar ul{padding-left:1.1em;margin:.5rem 0}
+.grammar li{margin:.25rem 0;font-style:italic}
+.note{font-size:.85rem;color:var(--muted)}
+.res-list{list-style:none;margin:0;padding:0}
+.res-list li{padding:8px 0;border-top:1px solid var(--line)}
+.res-list li:first-child{border-top:0}
+.res-list b{color:var(--ink)}
+.res-list .tag{display:inline-block;font-size:.75rem;color:var(--teal);border:1px solid var(--teal);border-radius:99px;padding:0 7px;margin-right:6px}
+.vocab-tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.vocab{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}
+.w{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 9px;text-align:left;cursor:pointer;min-height:2.6em}
+.w b{display:block;color:var(--ink);font-weight:700;font-size:.92rem}
+.w i{display:block;font-style:normal;font-size:.82rem;color:var(--muted);visibility:hidden}
+.vocab.show .w i,.w.flip i{visibility:visible}
+textarea.copybox{width:100%;height:120px;margin-top:8px;font:inherit;font-size:.85rem;background:var(--paper);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px}
+.dayplan{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:28px}
+.dayplan h2{font-size:1.05rem;margin-bottom:4px}
+.dayplan > p{margin:0 0 12px;color:var(--muted);font-size:.9rem}
+.slots{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.slot{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:14px;padding:10px 0;border-top:1px solid var(--line)}
+.slot:first-child{border-top:0}
+.slot .h{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;color:var(--ink)}
+.slot b{color:var(--ink)}
+.slot p{margin:.15rem 0 0;font-size:.92rem}
+.slot.crit{background:linear-gradient(90deg,color-mix(in srgb,var(--mark) 22%,transparent),transparent 70%);border-radius:8px;padding-left:8px;margin-left:-8px}
+@media (max-width:560px){.slot{grid-template-columns:minmax(0,1fr);gap:2px}}
+.prep summary{cursor:pointer;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;color:var(--ink);font-size:1.05rem}
+.prep summary small{font-family:"Atkinson Hyperlegible",sans-serif;font-weight:400;color:var(--muted);margin-left:6px;font-size:.85rem}
+.prep-list{list-style:none;padding:0;margin:10px 0 0}
+.prep-item{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.prep-item p{margin:.15rem 0 0}
+.prep-item.ok b{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--mark);text-decoration-thickness:2px}
+footer{color:var(--muted);font-size:.85rem;padding:20px 0 40px;border-top:1px solid var(--line);margin-top:20px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:8px 16px;border-radius:99px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.on{opacity:1}
+
+@media (max-width:820px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .hero{grid-template-columns:minmax(0,1fr)}
+  .pct{text-align:left}
+  .stamps{grid-template-columns:repeat(6,minmax(0,1fr));row-gap:12px}
+  .day-body{padding-left:16px}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <h1>Roteiro de inglês, ciclo 1: 12 semanas rumo ao B2</h1>
+      <p>30 minutos ativos por dia, um tema por semana. Abra um dia para ver o que estudar, com qual recurso e por quanto tempo. Marque o quadrado quando terminar.</p>
+      <p><button class="btn primary" id="nextBtn" type="button">Abrir a próxima atividade</button></p>
+    </div>
+    <div class="pct" aria-live="polite">
+      <b id="pctNum">0%</b>
+      <span id="pctTxt">0 de 84 dias concluídos</span>
+      <div class="bar"><i id="pctBar"></i></div>
+    </div>
+  </header>
+
+  <div class="grid-card">
+    <div class="grid-head">
+      <h2>Seus 84 dias</h2>
+      <span class="save" id="saveState">Carregando progresso…</span>
+    </div>
+    <div class="stamps" id="stamps"></div>
+    <div class="legend"><span>Cada coluna é uma semana, de segunda a domingo.</span></div>
+  </div>
+
+  <section class="dayplan prep" id="prep"></section>
+
+  <section class="dayplan" aria-labelledby="dp-h">
+    <h2 id="dp-h">Onde o estudo cabe no seu dia útil</h2>
+    <p>Horário de Portugal. Nos fins de semana o bloco ativo pode ser em qualquer horário.</p>
+    <ul class="slots">
+      <li class="slot"><span class="h">7h–11h</span><div><b>Ginásio: o seu maior tempo morto</b><p>Podcast do barril no trajeto e no cardio (🟢 ou 🟡; os episódios longos de História e Política cabem aqui). Nos intervalos entre séries, faça o Anki do dia no celular (10 min).</p></div></li>
+      <li class="slot"><span class="h">11h–13h30</span><div><b>Almoço e descanso</b><p>Livre. Opcional: um vídeo 🟢 de culinária enquanto prepara o almoço. O descanso fica sem inglês.</p></div></li>
+      <li class="slot"><span class="h">13h30–14h</span><div><b>Bloco ativo (20–30 min)</b><p>Gramática, escrita, shadowing e roleplay, com a cabeça descansada. Horário fixo, âncora clara (acaba quando começa o cliente do Brasil) e já serve de aquecimento para as 15h. Se o Anki ficou no ginásio, aqui são 20 min.</p></div></li>
+      <li class="slot"><span class="h">14h–15h</span><div><b>Cliente do Brasil: sem estudo</b><p>Hora de trabalho em português. Nos últimos segundos antes das 15h, diga em inglês, em voz baixa, a primeira coisa que vai reportar.</p></div></li>
+      <li class="slot crit"><span class="h">15h–18h</span><div><b>Bloco crítico: sem estudo</b><p>Só mineração passiva: quando um colega usar uma frase boa, ou quando você travar, anote uma linha no celular. Não pare o trabalho para pesquisar.</p></div></li>
+      <li class="slot"><span class="h">18h–24h</span><div><b>Intervalos entre reuniões</b><p>Transforme as anotações das 15h–18h em cards. Se o Anki não coube no ginásio, faça aqui no celular (10 min).</p></div></li>
+      <li class="slot"><span class="h">Depois da 0h</span><div><b>Descanso</b><p>Sem estudo ativo. No máximo um podcast 🟢 leve, se isso ajudar você a desligar.</p></div></li>
+    </ul>
+  </section>
+
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Semanas"></nav>
+  <main id="week"></main>
+
+  <footer>
+    Os recursos indicados existiam até onde vai meu conhecimento. Programas, podcasts e sites mudam de nome, de preço ou acabam: confirme antes de montar seu barril. Os links de vídeo abrem uma busca no YouTube, não um vídeo específico.
+  </footer>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const WEEKS = [
+{
+ n:1, emoji:"💻", theme:"Rotina de trabalho remoto",
+ why:"Falar com naturalidade sobre o que você faz todo dia e o que está fazendo agora: a base de qualquer small talk profissional.",
+ grammar:{topic:"Present simple vs. present continuous",
+  explain:"Present simple para rotinas, fatos e verbos de estado (know, need, prefer). Present continuous para o que acontece agora ou neste período (this week, these days). Erro clássico de brasileiro: “I am working here since 2022” (o certo é present perfect, tema da semana 2).",
+  examples:["I usually start work at 3 p.m. because of the time zone.","This week I’m working on a data migration.","I need more focus time. (não: I’m needing)"],
+  murphy:"No índice do English Grammar in Use, procure as unidades de “present continuous”, “present simple” e “present continuous and present simple”."},
+ resources:[
+  {name:"BBC Learning English: 6 Minute English",desc:"Episódios curtos com transcrição: ideais para shadowing.",url:"https://www.bbc.co.uk/learningenglish"},
+  {name:"English Grammar in Use (Murphy)",desc:"Consulta guiada pelo seu log de erros."},
+  {name:"Business English Pod",desc:"Diálogos de escritório com explicação. Confirme o modelo de acesso atual."},
+  {name:"The Office (US)",desc:"Sitcom de escritório para a interação com pausa (quarta-feira)."}],
+ barrel:[
+  {type:"Vídeo",title:"6 Minute English sobre trabalho e rotina",q:"6 minute english work routine"},
+  {type:"Vídeo",title:"“A day in the life of a data engineer”",q:"a day in the life of a data engineer remote"},
+  {type:"Podcast",title:"Business English Pod: small talk no trabalho",q:"business english pod small talk"},
+  {type:"Texto",title:"Artigo sobre produtividade no trabalho remoto",q:"remote work productivity tips"}],
+ shadow:{what:"Um episódio de 6 Minute English sobre trabalho (use só 2–3 minutos).",q:"6 minute english work"},
+ interaction:"Assista a uma cena curta de The Office que você já conhece. Pause depois de cada fala e responda ao personagem como se fosse seu colega.",
+ reading:"Um artigo curto sobre trabalho remoto (BBC, The Guardian ou similar). Sublinhe todos os verbos e classifique: rotina ou agora?",
+ writing:"Describe your typical workday and contrast it with what you’re doing differently this week. (120–150 palavras)",
+ writingLong:"Remote work: what works and what doesn’t for you and your family. (180–220 palavras)",
+ roleplay:{role:"a new teammate from Canada",scenario:"small talk at the start of a call: introduce yourself, your role, your daily routine and the time zone difference"},
+ micro:"Narre em voz alta o que está fazendo agora: “I’m making coffee, I’m checking my calendar…”",
+ recording:"Fale 2 minutos sobre sua semana, contrastando o que você normalmente faz com o que fez de diferente.",
+ vocab:"deadline=prazo|workload=carga de trabalho|schedule=agenda; cronograma|time zone=fuso horário|shift=turno|remote work=trabalho remoto|commute=trajeto casa-trabalho|to log in=entrar no sistema|to log off=desconectar|to catch up on=pôr em dia|to keep track of=acompanhar; controlar|to set up=configurar|to run late=atrasar-se|to wrap up=finalizar|to follow up=dar seguimento|to reach out=entrar em contato|to look into=verificar; investigar|to sort out=resolver|to handle=lidar com|to prioritize=priorizar|task=tarefa|to-do list=lista de tarefas|backlog=pendências acumuladas|routine=rotina|break=pausa|lunch break=horário de almoço|overtime=hora extra|day off=dia de folga|availability=disponibilidade|to be available=estar disponível|out of office=fora do escritório|calendar invite=convite de agenda|reminder=lembrete|notification=notificação|inbox=caixa de entrada|to reply=responder|to forward=encaminhar|attachment=anexo|thread=fio de mensagens|to cc=copiar (em e-mail)|colleague=colega|teammate=colega de equipe|manager=gestor|client=cliente|stakeholder=parte interessada|contractor=prestador de serviço|employer=empregador|to be in charge of=ser responsável por|responsibility=responsabilidade|productivity=produtividade|focus time=tempo de foco|distraction=distração|burnout=esgotamento|work-life balance=equilíbrio vida-trabalho|flexible hours=horário flexível|home office=escritório em casa|setup=montagem; configuração|headset=fone com microfone|bandwidth=largura de banda; disponibilidade (fig.)|connection=conexão|to mute=silenciar|to unmute=ativar o microfone|to share my screen=compartilhar a tela|usually=geralmente|currently=atualmente|nowadays=hoje em dia|at the moment=no momento|these days=ultimamente|once in a while=de vez em quando|on a daily basis=diariamente"
+},
+{
+ n:2, emoji:"📋", theme:"Reuniões e status updates",
+ why:"Reportar progresso com precisão é o momento em que a gramática mais aparece no seu trabalho.",
+ grammar:{topic:"Present perfect vs. past simple",
+  explain:"Past simple para um momento terminado e definido (yesterday, last week, at 3 p.m.). Present perfect para resultado que importa agora, sem tempo definido (already, yet, just, so far) e para algo que começou no passado e continua (for, since).",
+  examples:["We’ve already migrated two tables, but we haven’t tested the third one yet.","I finished the report yesterday.","I’ve worked on this account since 2023."],
+  murphy:"Procure as unidades de “present perfect”, “present perfect and past simple” e “for and since”."},
+ resources:[
+  {name:"BBC Learning English",desc:"Séries de inglês para o trabalho e gramática com exemplos.",url:"https://www.bbc.co.uk/learningenglish"},
+  {name:"Business English Pod",desc:"Episódios sobre reuniões, opiniões e acordos."},
+  {name:"Transcrições das suas reuniões",desc:"Se a ferramenta gerar, use 5 minutos de transcrição real como material de mineração."},
+  {name:"YouGlish",desc:"Ouça “so far”, “on track” e “heads-up” na boca de nativos.",url:"https://youglish.com"}],
+ barrel:[
+  {type:"Vídeo",title:"Como dar um status update em inglês",q:"how to give a status update in english meeting"},
+  {type:"Vídeo",title:"Frases para reuniões em inglês",q:"useful phrases for meetings in english"},
+  {type:"Podcast",title:"Business English Pod: meetings",q:"business english pod meetings"},
+  {type:"Texto",title:"Guia de stand-up meetings",q:"daily stand-up meeting best practices"}],
+ shadow:{what:"Um vídeo curto com frases de reunião. Shadowing só das frases de status update.",q:"english phrases for meetings status update"},
+ interaction:"Use uma reunião sua de verdade (gravação ou transcrição). Pause e reformule com suas palavras o que o colega reportou.",
+ reading:"5 minutos de transcrição ou ata de reunião do trabalho, mais um artigo sobre stand-ups. Marque cada already, yet, just, since e for.",
+ writing:"Write your status update for this week: what you’ve done, what you did yesterday, what’s blocked. (120–150 palavras)",
+ writingLong:"Write a short e-mail to a manager summarizing a project: progress so far, risks and next steps. (180–220 palavras)",
+ roleplay:{role:"my project manager",scenario:"a daily stand-up: I report what I’ve done, what I’m doing and any blockers; ask me follow-up questions"},
+ micro:"Antes de cada reunião real, ensaie mentalmente 3 frases com present perfect.",
+ recording:"Grave um status update de 2 minutos como se fosse para o seu gestor.",
+ vocab:"agenda=pauta|meeting=reunião|stand-up=reunião diária rápida|status update=atualização de status|progress=progresso|milestone=marco|blocker=impedimento|action item=item de ação|minutes=ata|attendee=participante|to attend=participar de|to host=conduzir; organizar|to join=entrar (na reunião)|to chair=presidir|to schedule=agendar|to reschedule=reagendar|to postpone=adiar|to call off=cancelar|to bring up=levantar (assunto)|to point out=salientar|to go over=revisar|to move on=passar adiante|to sum up=resumir|to agree=concordar|to disagree=discordar|to suggest=sugerir|proposal=proposta|feedback=retorno|input=contribuição|to clarify=esclarecer|to confirm=confirmar|to double-check=checar de novo|so far=até agora|already=já|yet=ainda (neg./perg.)|just=acabou de|recently=recentemente|lately=ultimamente|since=desde|for=há; durante|ago=atrás|to complete=concluir|to deliver=entregar|delivery=entrega|on track=dentro do previsto|behind schedule=atrasado|ahead of schedule=adiantado|to be on the same page=estar alinhado|alignment=alinhamento|to align=alinhar|priority=prioridade|scope=escopo|estimate=estimativa|risk=risco|dependency=dependência|next steps=próximos passos|to take notes=fazer anotações|recording=gravação|quick question=pergunta rápida|heads-up=aviso prévio|to keep someone posted=manter alguém informado|outcome=resultado|decision=decisão|to make a decision=tomar uma decisão|consensus=consenso|to raise a concern=expressar preocupação|sprint=sprint (ciclo de trabalho)|to run over=passar do horário|to circle back=retomar (assunto)|to touch base=fazer contato rápido|to loop someone in=incluir alguém"
+},
+{
+ n:3, emoji:"🩺", theme:"Saúde e bem-estar",
+ why:"Ir ao médico, falar de sono, treino e estresse: situações reais em que errar o modal muda o sentido.",
+ grammar:{topic:"Modais de conselho e obrigação",
+  explain:"Should/ought to = conselho. Must = obrigação que vem de quem fala ou regra forte. Have to = obrigação externa. Atenção: mustn’t = proibido; don’t have to = não é necessário. Had better = conselho com consequência.",
+  examples:["You should stretch before running.","I have to see a doctor about my knee.","You don’t have to fast before this test, but you mustn’t drink alcohol."],
+  murphy:"Procure as unidades de “must and have to”, “mustn’t, don’t need to” e “should”."},
+ resources:[
+  {name:"TED-Ed",desc:"Animações curtas sobre corpo e saúde, ótimas para i+1.",url:"https://www.ted.com"},
+  {name:"BBC Learning English: 6 Minute English",desc:"Há muitos episódios sobre sono, saúde e hábitos.",url:"https://www.bbc.co.uk/learningenglish"},
+  {name:"Cambridge Dictionary",desc:"Dicionário monolíngue com exemplos.",url:"https://dictionary.cambridge.org"},
+  {name:"Podcasts de saúde em inglês",desc:"Escolha com senso crítico: alguns misturam ciência sólida com afirmações contestadas."}],
+ barrel:[
+  {type:"Vídeo",title:"TED-Ed sobre sono",q:"ted-ed sleep"},
+  {type:"Vídeo",title:"Conversa no médico em inglês",q:"at the doctor english conversation"},
+  {type:"Podcast",title:"6 Minute English sobre saúde",q:"6 minute english health"},
+  {type:"Texto",title:"Artigo sobre hábitos de corrida e recuperação",q:"running recovery tips article"}],
+ shadow:{what:"Um diálogo de consulta médica em inglês.",q:"doctor patient conversation english"},
+ interaction:"Assista a uma cena de série médica que você já viu (House, The Good Doctor ou outra). Pause e dê sua própria opinião sobre o caso.",
+ reading:"Um artigo sobre sono ou recuperação depois do exercício. Destaque todos os modais.",
+ writing:"Give advice to a friend who sleeps badly and works late: what they should, must and don’t have to do. (120–150 palavras)",
+ writingLong:"Your health routine: what you do, what you should do better and what you must change. (180–220 palavras)",
+ roleplay:{role:"a GP (family doctor) in Portugal who speaks English",scenario:"a consultation about knee pain after running; ask me questions and give advice"},
+ micro:"Durante a corrida ou o treino, descreva mentalmente o que sente: “My legs feel heavy, I should slow down.”",
+ recording:"Fale 2 minutos dando 5 conselhos de saúde para alguém que trabalha à noite.",
+ vocab:"health=saúde|wellbeing=bem-estar|appointment=consulta|check-up=exame de rotina|GP=clínico geral|symptom=sintoma|pain=dor|ache=dor contínua|headache=dor de cabeça|backache=dor nas costas|sore throat=dor de garganta|fever=febre|cough=tosse|to feel dizzy=sentir tontura|exhausted=exausto|to rest=descansar|sleep=sono|to fall asleep=adormecer|to oversleep=dormir demais|insomnia=insônia|nap=cochilo|stress=estresse|anxiety=ansiedade|to relax=relaxar|to work out=treinar|to stretch=alongar|warm-up=aquecimento|cool-down=desaquecimento|injury=lesão|to injure=lesionar|to recover=recuperar-se|recovery=recuperação|heart rate=frequência cardíaca|blood pressure=pressão arterial|nutrition=nutrição|to cut down on=reduzir|to give up=largar; parar de|habit=hábito|hydration=hidratação|prescription=receita médica|pharmacy=farmácia|medicine=remédio|side effect=efeito colateral|treatment=tratamento|to treat=tratar|to prevent=prevenir|prevention=prevenção|posture=postura|screen time=tempo de tela|eye strain=cansaço visual|should=deveria|ought to=deveria (mais formal)|must=deve; tem que|have to=ter que|don’t have to=não precisa|mustn’t=não pode (proibido)|had better=é melhor que|to recommend=recomendar|to advise=aconselhar|advice=conselho|mental health=saúde mental|sick leave=licença médica|health insurance=seguro de saúde|emergency=emergência|to get better=melhorar|to get worse=piorar|fit=em forma|to keep fit=manter a forma|sore=dolorido|swollen=inchado|to sprain=torcer (tornozelo etc.)|painkiller=analgésico"
+},
+{
+ n:4, emoji:"🍳", theme:"Culinária e alimentação",
+ why:"Cozinhar ouvindo inglês transforma tempo morto em input com ação real: o jeito mais natural de adquirir verbos.",
+ grammar:{topic:"Contáveis/incontáveis, quantificadores e imperativos",
+  explain:"Incontáveis (flour, butter, advice, information) não vão para o plural nem usam a/an. Use much/a little com incontáveis e many/a few com contáveis. Receitas usam imperativo + sequenciadores (first, then, after that, finally).",
+  examples:["Add a little salt and a few cloves of garlic.","How much flour do we need? How many eggs?","First, preheat the oven. Then, mix the dry ingredients."],
+  murphy:"Procure as unidades de “countable and uncountable”, “some and any”, “much, many, little, few, a lot”."},
+ resources:[
+  {name:"Canais de receitas no YouTube",desc:"Escolha 2–3 que você goste; o que importa é assistir enquanto cozinha."},
+  {name:"Language Reactor",desc:"Extensão para YouTube e Netflix: legenda dupla e exportação de frases.",url:"https://www.languagereactor.com"},
+  {name:"BBC Learning English",desc:"Episódios sobre comida e hábitos alimentares.",url:"https://www.bbc.co.uk/learningenglish"},
+  {name:"Receitas escritas em inglês",desc:"Leia a receita inteira antes de assistir ao vídeo dela."}],
+ barrel:[
+  {type:"Vídeo",title:"Receitas portuguesas explicadas em inglês",q:"portuguese food recipe english"},
+  {type:"Vídeo",title:"Receitas brasileiras em inglês",q:"brazilian recipe in english"},
+  {type:"Vídeo",title:"Técnicas básicas de faca e cozinha",q:"basic knife skills cooking"},
+  {type:"Podcast",title:"6 Minute English sobre comida",q:"6 minute english food"}],
+ shadow:{what:"2 minutos de um vídeo de receita (a parte das instruções).",q:"easy recipe step by step english"},
+ interaction:"Cozinhe algo assistindo a um vídeo de receita. Pause e diga o que vai fazer antes do apresentador fazer.",
+ reading:"Leia uma receita completa em inglês e reescreva os quantificadores errados de propósito para depois corrigir.",
+ writing:"Write the recipe of a dish your family loves, with quantities and steps. (120–150 palavras)",
+ writingLong:"Portuguese vs. Brazilian food: explain the differences to a foreign colleague. (180–220 palavras)",
+ roleplay:{role:"a waiter in a restaurant in London",scenario:"I order for my family, ask about ingredients, make a special request and complain politely about a wrong dish"},
+ micro:"Cozinhando, narre cada ação: “I’m chopping the onion, now I’m adding a little olive oil.”",
+ recording:"Explique em 2 minutos, como num vídeo, como preparar seu prato favorito.",
+ vocab:"recipe=receita|ingredient=ingrediente|to chop=picar|to slice=fatiar|to dice=cortar em cubos|to peel=descascar|to grate=ralar|to mix=misturar|to stir=mexer|to whisk=bater (com batedor)|to boil=ferver|to simmer=cozinhar em fogo baixo|to fry=fritar|to bake=assar (massas, pães)|to roast=assar (carnes, legumes)|to grill=grelhar|to steam=cozinhar no vapor|to season=temperar|to marinate=marinar|to preheat=preaquecer|oven=forno|stove=fogão|pan=frigideira|pot=panela|cutting board=tábua de corte|knife=faca|bowl=tigela|tablespoon=colher de sopa|teaspoon=colher de chá|pinch=pitada|a handful of=um punhado de|a slice of=uma fatia de|a piece of=um pedaço de|clove of garlic=dente de alho|some=algum; um pouco|any=algum; nenhum|much=muito (incontável)|many=muitos (contável)|a little=um pouco|a few=alguns|a lot of=muito(s)|plenty of=bastante|enough=suficiente|too much=demais|flour=farinha|butter=manteiga|olive oil=azeite|leftovers=sobras|meal prep=preparo antecipado de refeições|to taste=provar; a gosto|tasty=saboroso|bland=sem gosto|spicy=picante|crispy=crocante|tender=macio|raw=cru|overcooked=passado do ponto|well-done=bem passado|rare=malpassado|first=primeiro|then=depois|after that=em seguida|finally=por fim|until=até que|serving=porção|to set the table=pôr a mesa|dish=prato (comida)|to drain=escorrer|to sprinkle=polvilhar|to melt=derreter|to thaw=descongelar"
+},
+{
+ n:5, emoji:"✈️", theme:"Viagens e viagens a trabalho",
+ why:"Aeroporto, hotel e conferência: situações de pressão em que você precisa resolver problemas falando.",
+ grammar:{topic:"Formas de futuro",
+  explain:"Will para decisões na hora, previsões e promessas. Going to para planos já decididos e previsões com evidência. Present continuous para compromissos combinados (com data). Present simple para horários fixos (the flight leaves at 7).",
+  examples:["I’m flying to Toronto next Monday. (combinado)","I’m going to visit the office while I’m there. (plano)","The flight leaves at 7:40. / I’ll call you when I land."],
+  murphy:"Procure as unidades de “present tenses for the future”, “I’m going to”, “will and shall” e “will and going to”."},
+ resources:[
+  {name:"Rick Steves",desc:"Vídeos e programas de viagem pela Europa, com inglês claro."},
+  {name:"BBC Learning English",desc:"Inglês para viagens e situações reais.",url:"https://www.bbc.co.uk/learningenglish"},
+  {name:"YouGlish",desc:"Pronúncia de itinerary, receipt e aisle.",url:"https://youglish.com"},
+  {name:"Ludwig",desc:"Verifique se suas frases de e-mail de viagem soam naturais.",url:"https://ludwig.guru"}],
+ barrel:[
+  {type:"Vídeo",title:"Inglês no aeroporto",q:"english at the airport conversation"},
+  {type:"Vídeo",title:"Check-in em hotel em inglês",q:"hotel check in english conversation"},
+  {type:"Vídeo",title:"Rick Steves sobre Portugal",q:"rick steves portugal"},
+  {type:"Texto",title:"Dicas para viagens a trabalho",q:"business travel tips article"}],
+ shadow:{what:"Um diálogo de check-in no aeroporto ou no hotel.",q:"airport check in conversation english"},
+ interaction:"Assista a um vídeo de viagem sobre um lugar que você conhece. Pause e corrija ou complemente o apresentador.",
+ reading:"Um artigo sobre viagens a trabalho. Classifique cada futuro: will, going to ou present continuous.",
+ writing:"Describe your next trip (real or planned): arrangements, plans and predictions. (120–150 palavras)",
+ writingLong:"E-mail to a client: you’re visiting their office next month. Confirm dates, logistics and agenda. (180–220 palavras)",
+ roleplay:{role:"an airline agent at the airport",scenario:"my connecting flight was cancelled; I need a new flight, a hotel voucher and to inform my client"},
+ micro:"Ao planejar o dia, pense nos próximos passos com going to e nos compromissos com present continuous.",
+ recording:"Fale 2 minutos sobre a viagem dos seus sonhos usando as três formas de futuro.",
+ vocab:"trip=viagem|journey=trajeto; jornada|business trip=viagem a trabalho|flight=voo|to book=reservar|booking=reserva|to check in=fazer check-in|to check out=fazer check-out|boarding pass=cartão de embarque|gate=portão de embarque|layover=escala|connecting flight=voo de conexão|delay=atraso|delayed=atrasado|cancelled=cancelado|departure=partida|arrival=chegada|luggage=bagagem|carry-on=bagagem de mão|to pack=fazer as malas|to unpack=desfazer as malas|passport=passaporte|customs=alfândega|itinerary=itinerário|accommodation=hospedagem|to stay=hospedar-se|room service=serviço de quarto|receipt=recibo|expenses=despesas|to reimburse=reembolsar|per diem=diária (ajuda de custo)|currency=moeda|exchange rate=taxa de câmbio|to rent a car=alugar um carro|public transport=transporte público|round trip=ida e volta|one-way=só ida|to get lost=perder-se|directions=indicações (de caminho)|nearby=perto|sightseeing=passeio turístico|landmark=ponto de referência|jet lag=cansaço de fuso horário|to arrange=combinar; providenciar|arrangement=preparativo; combinado|will=vai (decisão/previsão)|going to=vai (plano)|to be about to=estar prestes a|to look forward to=aguardar com ansiedade|to set off=partir|to get back=voltar|to pick someone up=buscar alguém|to drop someone off=deixar alguém|travel insurance=seguro viagem|window seat=assento na janela|aisle seat=assento no corredor|overbooked=com overbooking|on time=pontual|venue=local do evento|conference=conferência|to network=fazer networking|abroad=no exterior|overseas=no exterior|destination=destino|voucher=voucher; vale|to miss a flight=perder um voo|lost luggage=bagagem extraviada|to land=pousar|to take off=decolar|refund=reembolso"
+},
+{
+ n:6, emoji:"🏡", theme:"Família e vida em casa",
+ why:"Falar do passado da família e das tradições: conversa pessoal que aproxima colegas e clientes.",
+ grammar:{topic:"Used to, would e be/get used to",
+  explain:"Used to = hábito ou estado do passado que não existe mais. Would = hábito repetido do passado (não serve para estados: não diga “I would live in Brazil”). Be used to + -ing = estar acostumado; get used to + -ing = acostumar-se.",
+  examples:["We used to live in Brazil.","On Sundays, my grandmother would cook for everyone.","I’m used to working at night, but it took a while to get used to it."],
+  murphy:"Procure as unidades de “used to (do)” e “be/get used to (doing)”."},
+ resources:[
+  {name:"Modern Family",desc:"Sitcom familiar, excelente para shadowing e interação."},
+  {name:"BBC Learning English: 6 Minute English",desc:"Episódios sobre família e relações.",url:"https://www.bbc.co.uk/learningenglish"},
+  {name:"Language Reactor",desc:"Extraia frases das cenas para o Anki.",url:"https://www.languagereactor.com"},
+  {name:"Cambridge Dictionary",desc:"Confirme os phrasal verbs de família.",url:"https://dictionary.cambridge.org"}],
+ barrel:[
+  {type:"Vídeo",title:"Cenas de Modern Family",q:"modern family best scenes"},
+  {type:"Vídeo",title:"Phrasal verbs sobre família",q:"phrasal verbs family relationships"},
+  {type:"Podcast",title:"6 Minute English sobre família",q:"6 minute english family"},
+  {type:"Texto",title:"Artigo sobre o “ninho vazio” e filhos adultos",q:"empty nest adult children article"}],
+ shadow:{what:"Uma cena de Modern Family (1–2 minutos).",q:"modern family scene"},
+ interaction:"Pause uma cena de Modern Family e responda como se você fosse o pai ou a mãe da família.",
+ reading:"Um artigo sobre famílias com filhos adultos. Destaque cada used to e would.",
+ writing:"Describe what your family used to do on weekends when your children were young. (120–150 palavras)",
+ writingLong:"Moving countries as a family: what you had to get used to and what you’re still not used to. (180–220 palavras)",
+ roleplay:{role:"a new British neighbor",scenario:"a friendly chat over coffee about our families, childhood memories and how things used to be"},
+ micro:"Ao ver uma foto antiga no celular, descreva em inglês o que vocês costumavam fazer.",
+ recording:"Conte em 2 minutos uma memória de infância usando used to e would.",
+ vocab:"household=lar (quem mora junto)|parent=pai ou mãe|sibling=irmão ou irmã|spouse=cônjuge|in-laws=família do cônjuge|relative=parente|grandparents=avós|to raise=criar (filhos)|upbringing=criação|to grow up=crescer|childhood=infância|to look after=cuidar de|to take care of=cuidar de|to get along with=dar-se bem com|to rely on=contar com|to look up to=admirar|to take after=puxar a (alguém)|chores=tarefas domésticas|to do the dishes=lavar a louça|to do the laundry=lavar roupa|to vacuum=passar aspirador|to tidy up=arrumar|to take out the trash=levar o lixo|groceries=compras de mercado|to run errands=resolver coisas na rua|to move out=sair de casa|to move in=mudar-se para|neighbor=vizinho|gathering=encontro familiar|anniversary=aniversário (de casamento etc.)|tradition=tradição|to celebrate=comemorar|bond=vínculo|close-knit=unido|supportive=que apoia|strict=rígido|to argue=discutir|argument=discussão|to make up=fazer as pazes|to miss=sentir falta|homesick=com saudade de casa|roots=raízes|heritage=herança cultural|to keep in touch=manter contato|used to=costumava|would=costumava (hábito)|to get used to=acostumar-se|to be used to=estar acostumado|memory=lembrança|to remind=fazer lembrar|generation=geração|empty nest=ninho vazio|adult children=filhos adultos|to graduate=formar-se|independence=independência|privacy=privacidade|quality time=tempo de qualidade|to hang out=passar tempo juntos|to have a laugh=dar risada|proud=orgulhoso|to be proud of=ter orgulho de|grateful=grato|nephew=sobrinho|niece=sobrinha|cousin=primo ou prima|to babysit=cuidar de criança|bedtime=hora de dormir|family-run=administrado pela família|to settle down=assentar-se; criar raízes|family reunion=reencontro de família"
+},
+{
+ n:7, emoji:"🗄️", theme:"Tecnologia e dados",
+ why:"Explicar sistemas com clareza: a voz passiva é a gramática da documentação técnica.",
+ grammar:{topic:"Voz passiva",
+  explain:"Use a passiva quando o processo importa mais do que quem faz: be + particípio. Em todos os tempos: is processed, was migrated, has been deployed, is being tested, will be loaded. Em textos técnicos ela é a norma, mas na fala do dia a dia use com moderação.",
+  examples:["The data is ingested every hour and stored in the lake.","The pipeline was redesigned last year.","The new tables are being tested and will be deployed on Friday."],
+  murphy:"Procure as unidades de “passive” (há várias seguidas) e “it is said that…”."},
+ resources:[
+  {name:"Data Engineering Podcast (Tobias Macey)",desc:"Conversas técnicas no seu domínio. Nível desafio: comece pelos trechos de introdução."},
+  {name:"Documentação técnica que você usa no trabalho",desc:"Leia com intenção de mineração, não só para resolver o problema."},
+  {name:"Ludwig",desc:"Compare suas frases técnicas com exemplos reais.",url:"https://ludwig.guru"},
+  {name:"YouGlish",desc:"Pronúncia de throughput, latency e schema.",url:"https://youglish.com"}],
+ barrel:[
+  {type:"Vídeo",title:"Explicação de arquitetura de dados",q:"data engineering architecture explained"},
+  {type:"Vídeo",title:"ETL vs ELT explicado",q:"etl vs elt explained"},
+  {type:"Podcast",title:"Data Engineering Podcast",q:"data engineering podcast tobias macey"},
+  {type:"Texto",title:"Documentação oficial de uma ferramenta do seu stack",q:""}],
+ shadow:{what:"2 minutos de um vídeo explicando arquitetura de dados.",q:"data pipeline explained"},
+ interaction:"Pause um vídeo técnico e explique o próximo passo antes do apresentador, ou discorde da escolha de arquitetura dele.",
+ reading:"Uma página de documentação técnica do seu stack. Converta 5 frases da passiva para a ativa e vice-versa.",
+ writing:"Describe one pipeline you work on using the passive: how data is extracted, transformed and loaded. (120–150 palavras)",
+ writingLong:"Write the “Overview” section of a technical document for a pipeline you know. (180–220 palavras)",
+ roleplay:{role:"a non-technical business stakeholder",scenario:"I explain how our data pipeline works and why a report was delayed; ask simple but tough questions"},
+ micro:"Ao abrir um job ou dashboard no trabalho, descreva em voz baixa o que está acontecendo, usando a passiva.",
+ recording:"Explique em 2 minutos, para um leigo, o que um engenheiro de dados faz.",
+ vocab:"dataset=conjunto de dados|database=banco de dados|pipeline=fluxo de dados|to ingest=ingerir (dados)|ingestion=ingestão|to load=carregar|to extract=extrair|to transform=transformar|to store=armazenar|storage=armazenamento|to process=processar|batch=lote|real-time=em tempo real|schema=esquema|table=tabela|column=coluna|row=linha|query=consulta|to run a query=executar uma consulta|to deploy=implantar|deployment=implantação|environment=ambiente|production=produção|to migrate=migrar|migration=migração|cloud=nuvem|scalable=escalável|to scale=escalar|reliable=confiável|reliability=confiabilidade|latency=latência|throughput=vazão|performance=desempenho|bottleneck=gargalo|to optimize=otimizar|to automate=automatizar|automation=automação|to schedule a job=agendar um job|workflow=fluxo de trabalho|to trigger=disparar|to monitor=monitorar|dashboard=painel|alert=alerta|log=registro; log|to update=atualizar|upgrade=atualização de versão|release=versão; lançamento|feature=funcionalidade|requirement=requisito|to design=projetar|architecture=arquitetura|to integrate=integrar|integration=integração|access=acesso|permission=permissão|security=segurança|to encrypt=criptografar|backup=cópia de segurança|to restore=restaurar|to be stored in=ser armazenado em|to be processed by=ser processado por|has been deployed=foi implantado|is being migrated=está sendo migrado|documentation=documentação|maintenance=manutenção|legacy system=sistema legado|vendor=fornecedor|data quality=qualidade dos dados|duplicate=duplicado|to validate=validar|source system=sistema de origem|target=destino|upstream=a montante (origem)|downstream=a jusante (consumidores)"
+},
+{
+ n:8, emoji:"🚨", theme:"Incidentes e resolução de problemas",
+ why:"Contar o que deu errado, na ordem certa, é o coração de um RCA e de uma boa escalação.",
+ grammar:{topic:"Tempos narrativos: past continuous e past perfect",
+  explain:"Past simple para a sequência principal. Past continuous para a ação em andamento quando algo aconteceu. Past perfect para o que aconteceu antes de outro ponto do passado. By the time + past simple costuma pedir past perfect.",
+  examples:["The job was running when the server went down.","By the time we noticed, the table had already been overwritten.","We had been receiving warnings for two days before the outage."],
+  murphy:"Procure as unidades de “past continuous”, “past perfect” e “past perfect continuous”."},
+ resources:[
+  {name:"Post-mortems públicos de empresas de tecnologia",desc:"Várias empresas publicam análises de incidentes: leitura técnica real."},
+  {name:"BBC Learning English",desc:"Revisão dos tempos narrativos com exemplos.",url:"https://www.bbc.co.uk/learningenglish"},
+  {name:"Ludwig",desc:"Teste frases como “we had already rolled back”.",url:"https://ludwig.guru"},
+  {name:"Seu histórico de tickets",desc:"Reescreva em inglês um incidente real (sem dados sensíveis)."}],
+ barrel:[
+  {type:"Vídeo",title:"Como escrever um post-mortem",q:"how to write a postmortem incident"},
+  {type:"Vídeo",title:"Narrative tenses explicados",q:"narrative tenses past perfect past continuous"},
+  {type:"Texto",title:"Post-mortem público de uma grande indisponibilidade",q:"public postmortem outage"},
+  {type:"Podcast",title:"Episódios sobre on-call e incidentes",q:"incident management on-call podcast"}],
+ shadow:{what:"Trecho de um vídeo sobre gestão de incidentes.",q:"incident management explained"},
+ interaction:"Pause um vídeo de post-mortem e conte com suas palavras o que tinha acontecido antes daquele momento.",
+ reading:"Um post-mortem público. Monte a linha do tempo marcando cada past perfect.",
+ writing:"Write the timeline of a real or invented incident with past simple, past continuous and past perfect. (120–150 palavras)",
+ writingLong:"Write a short RCA: summary, timeline, root cause, impact, lessons learned. (180–220 palavras)",
+ roleplay:{role:"an upset client-side manager",scenario:"a report was wrong this morning; I explain what happened, what caused it and what we’re doing to prevent it"},
+ micro:"Depois de resolver qualquer problema (no trabalho ou em casa), conte para si mesmo em inglês o que aconteceu.",
+ recording:"Em 2 minutos, narre o pior problema técnico que você já resolveu.",
+ vocab:"incident=incidente|outage=indisponibilidade|downtime=tempo fora do ar|failure=falha|to fail=falhar|error=erro|bug=defeito; bug|root cause=causa raiz|root cause analysis=análise de causa raiz|to investigate=investigar|to troubleshoot=diagnosticar e resolver|workaround=solução paliativa|fix=correção|hotfix=correção urgente|to roll back=reverter|rollback=reversão|to escalate=escalar|escalation=escalonamento|severity=gravidade|impact=impacto|to affect=afetar|to restore service=restabelecer o serviço|to reproduce=reproduzir|to identify=identificar|to occur=ocorrer|to notice=notar|to realize=perceber|unexpected=inesperado|timeline=linha do tempo|while=enquanto|by the time=quando (já)|had already=já tinha|was running=estava rodando|had been running=vinha rodando|suddenly=de repente|meanwhile=enquanto isso|afterwards=depois|eventually=por fim|lessons learned=lições aprendidas|preventive measure=medida preventiva|to mitigate=mitigar|mitigation=mitigação|on-call=de plantão|handover=passagem de turno|ticket=chamado|to assign=atribuir|to acknowledge=confirmar recebimento|to resolve=resolver|pending=pendente|to update stakeholders=atualizar as partes interessadas|apology=pedido de desculpas|to apologize for=desculpar-se por|inconvenience=transtorno|to take ownership=assumir a responsabilidade|accountability=responsabilização|to keep an eye on=ficar de olho em|post-mortem=análise pós-incidente|data loss=perda de dados|corrupted=corrompido|to retry=tentar de novo|to overwrite=sobrescrever|to time out=expirar (tempo limite)|to crash=travar; cair|warning=aviso|threshold=limite|to go down=sair do ar|to be back up=voltar ao ar|to pinpoint=identificar com precisão|to rule out=descartar|hypothesis=hipótese"
+},
+{
+ n:9, emoji:"🎓", theme:"Educação e aprendizagem",
+ why:"Falar de cursos, certificações e de como você aprende: útil no trabalho e na vida dos seus filhos.",
+ grammar:{topic:"Condicionais zero e primeira",
+  explain:"Zero: verdades gerais (If + present, present). Primeira: possibilidade real no futuro (If + present, will). Depois de if, when, as soon as e unless, não use will: “If I will have time” está errado.",
+  examples:["If you review cards every day, you remember them.","If I pass the exam, I’ll get the certification.","I won’t improve unless I practice speaking."],
+  murphy:"Procure as unidades de “if I do… / if I did…” e “when / if / unless / as soon as” (orações de tempo)."},
+ resources:[
+  {name:"TED Talks sobre educação",desc:"Palestras com transcrição e legenda.",url:"https://www.ted.com"},
+  {name:"BBC Learning English",desc:"Explicações de condicionais com exercícios.",url:"https://www.bbc.co.uk/learningenglish"},
+  {name:"English Vocabulary in Use",desc:"Unidades sobre educação e estudo."},
+  {name:"Anki",desc:"Você mesmo é o estudo de caso desta semana.",url:"https://apps.ankiweb.net"}],
+ barrel:[
+  {type:"Vídeo",title:"TED Talk sobre como aprendemos",q:"ted talk how we learn"},
+  {type:"Vídeo",title:"Como aprender idiomas como adulto",q:"how to learn a language as an adult"},
+  {type:"Podcast",title:"6 Minute English sobre educação",q:"6 minute english education"},
+  {type:"Texto",title:"Artigo sobre aprendizado contínuo no trabalho",q:"lifelong learning workplace article"}],
+ shadow:{what:"Trecho de uma TED Talk sobre aprendizagem.",q:"ted talk learning"},
+ interaction:"Pause uma TED Talk sobre educação e responda com “I agree because…” ou “I’m not sure, because…”.",
+ reading:"Um artigo sobre aprendizado contínuo. Sublinhe todas as orações com if, unless e as soon as.",
+ writing:"Your study plan: what will happen if you follow it, and what won’t happen unless you practice. (120–150 palavras)",
+ writingLong:"Compare the education system in Portugal and Brazil from your family’s experience. (180–220 palavras)",
+ roleplay:{role:"a university admissions advisor",scenario:"I ask about a part-time master’s program for working professionals: requirements, schedule and costs"},
+ micro:"Antes de dormir, diga 3 frases com If… sobre amanhã.",
+ recording:"Fale 2 minutos sobre a habilidade que você mais quer aprender e o que acontece se conseguir.",
+ vocab:"to learn=aprender|to teach=ensinar|learner=aprendiz|tutor=professor particular|degree=diploma; graduação|bachelor’s degree=bacharelado|master’s degree=mestrado|online course=curso online|certification=certificação|to enroll=matricular-se|enrollment=matrícula|tuition=mensalidade (ensino)|scholarship=bolsa de estudos|curriculum=currículo escolar|syllabus=programa da disciplina|assignment=trabalho; tarefa|homework=dever de casa|exam=prova|to pass=passar (em prova)|to fail=reprovar|grade=nota|internship=estágio|skill=habilidade|soft skills=habilidades interpessoais|hard skills=habilidades técnicas|to improve=melhorar|to practice=praticar|to memorize=memorizar|to review=revisar|to master=dominar|fluency=fluência|fluent=fluente|mistake=erro|to make mistakes=cometer erros|to figure out=descobrir; entender|to keep up with=acompanhar|to fall behind=ficar para trás|to brush up on=dar uma revisada em|lifelong learning=aprendizado contínuo|self-taught=autodidata|mentor=mentor|knowledge=conhecimento|to acquire=adquirir|comprehension=compreensão|motivation=motivação|consistency=constância|goal=meta|to achieve=alcançar|achievement=conquista|if=se|unless=a menos que|as long as=desde que|provided that=contanto que|in case=caso; para o caso de|as soon as=assim que|to graduate from=formar-se em|to drop out=abandonar (curso)|lecture=aula expositiva|lecturer=professor universitário|thesis=tese; dissertação|deadline extension=prorrogação de prazo|to sit an exam=fazer uma prova|to cram=estudar em cima da hora|attendance=frequência|peer=colega (par)|workshop=oficina|hands-on=prático|to take a course=fazer um curso|well-rounded=completo; versátil|to hone=aprimorar|learning curve=curva de aprendizado|proficiency=proficiência"
+},
+{
+ n:10, emoji:"🏛️", theme:"História",
+ why:"Histórias longas pedem frases mais longas: orações relativas são o salto do B1 para o B2 na escrita.",
+ grammar:{topic:"Orações relativas (defining e non-defining)",
+  explain:"Who para pessoas, which para coisas, that nos dois (só em defining), whose para posse, where para lugares. Non-defining vai entre vírgulas, acrescenta informação extra e não aceita that.",
+  examples:["Portugal, which was a major sea power, built a global trade network.","The explorer who reached India by sea was Vasco da Gama.","Braga is a city whose history goes back to Roman times."],
+  murphy:"Procure as unidades de “relative clauses” (há várias seguidas, incluindo whose/whom/where)."},
+ resources:[
+  {name:"The Rest Is History",desc:"Podcast de história com dois apresentadores, inglês britânico."},
+  {name:"Hardcore History (Dan Carlin)",desc:"Episódios muito longos e densos: nível desafio, ideal para corrida longa."},
+  {name:"TED-Ed (história)",desc:"Animações curtas sobre eventos históricos.",url:"https://www.ted.com"},
+  {name:"News in Levels",desc:"Textos graduados quando o conteúdo nativo cansar.",url:"https://www.newsinlevels.com"}],
+ barrel:[
+  {type:"Vídeo",title:"TED-Ed: Grandes Navegações",q:"ted-ed age of exploration"},
+  {type:"Vídeo",title:"História de Portugal em inglês",q:"history of portugal explained"},
+  {type:"Vídeo",title:"História do Brasil em inglês",q:"history of brazil explained"},
+  {type:"Podcast",title:"The Rest Is History",q:"the rest is history podcast"}],
+ shadow:{what:"Trecho de um vídeo TED-Ed de história.",q:"ted-ed history"},
+ interaction:"Pause um vídeo de história e acrescente um fato que você sabe, usando uma oração relativa.",
+ reading:"Um artigo de história sobre Braga ou a época romana na Península. Junte frases curtas em frases longas com which e who.",
+ writing:"Describe a historical place you have visited using at least 6 relative clauses. (120–150 palavras)",
+ writingLong:"A historical event that shaped your family’s life, and why. (180–220 palavras)",
+ roleplay:{role:"a tourist visiting Braga",scenario:"I am a local guide showing the tourist around the historic center and answering questions"},
+ micro:"Ao passar por um monumento ou prédio antigo, descreva-o com uma frase relativa.",
+ recording:"Fale 2 minutos sobre seu período histórico favorito.",
+ vocab:"historical=histórico|historic=histórico (marcante)|century=século|decade=década|era=era|ancient=antigo|medieval=medieval|empire=império|kingdom=reino|ruler=governante|to rule=governar|reign=reinado|war=guerra|battle=batalha|army=exército|to invade=invadir|invasion=invasão|to conquer=conquistar|conquest=conquista|colony=colônia|colonization=colonização|independence=independência|revolution=revolução|to overthrow=derrubar|treaty=tratado|alliance=aliança|explorer=explorador|discovery=descobrimento|voyage=viagem marítima|trade route=rota comercial|slavery=escravidão|to abolish=abolir|civilization=civilização|dynasty=dinastia|monarchy=monarquia|republic=república|to found=fundar|founder=fundador|to settle=estabelecer-se|settler=colono|heritage=patrimônio|legacy=legado|primary source=fonte primária|evidence=evidência|archive=arquivo|to date back to=remontar a|to take place=acontecer|turning point=ponto de virada|to shape=moldar|to decline=declinar|downfall=queda|who=que (pessoas)|which=que; o qual (coisas)|that=que|whose=cujo|where=onde|whom=a quem (formal)|at the time=na época|back then=naquela época|in the aftermath of=na sequência de|to commemorate=homenagear|ruins=ruínas|walls=muralhas|cathedral=catedral|pilgrimage=peregrinação|bishop=bispo|to rebuild=reconstruir|navigator=navegador|fleet=frota|to set sail=zarpar|uprising=revolta|dictatorship=ditadura|coup=golpe de Estado"
+},
+{
+ n:11, emoji:"🗳️", theme:"Política e sociedade",
+ why:"Defender um ponto de vista com equilíbrio é uma habilidade C1. Começa aqui, com hipóteses e conectores.",
+ grammar:{topic:"Segunda e terceira condicionais (+ conectores de contraste)",
+  explain:"Segunda: hipótese no presente ou futuro (If + past, would). Terceira: passado imaginário (If + past perfect, would have + particípio). Use although, however, whereas e despite para equilibrar argumentos.",
+  examples:["If I were a minister, I would invest more in public transport.","If the policy had been tested earlier, it wouldn’t have failed.","Although taxes are high, public services are generally good."],
+  murphy:"Procure as unidades de “if I knew… I wish I knew”, “if I had known… I wish I had known” e “although / though / even though / in spite of”."},
+ resources:[
+  {name:"The Rest Is Politics",desc:"Podcast britânico com dois lados do espectro político."},
+  {name:"The Economist",desc:"Inglês escrito de altíssimo nível. Pago: use os artigos abertos ou a assinatura se valer a pena."},
+  {name:"BBC News",desc:"Notícias em inglês claro."},
+  {name:"News in Levels",desc:"A mesma notícia em níveis diferentes.",url:"https://www.newsinlevels.com"}],
+ barrel:[
+  {type:"Vídeo",title:"Como funciona o sistema político do Reino Unido",q:"how uk parliament works explained"},
+  {type:"Vídeo",title:"Como funciona a União Europeia",q:"how the european union works explained"},
+  {type:"Podcast",title:"The Rest Is Politics",q:"the rest is politics podcast"},
+  {type:"Texto",title:"Debate sobre um tema de política pública",q:"debate public policy pros and cons"}],
+ shadow:{what:"Trecho de um vídeo explicativo sobre o Parlamento ou a União Europeia.",q:"how parliament works explained"},
+ interaction:"Pause um podcast de política e responda com uma frase de concordância e outra de discordância.",
+ reading:"Um artigo de opinião. Liste os argumentos dos dois lados e os conectores usados.",
+ writing:"If you could change one public policy in Portugal, what would it be and why? (120–150 palavras)",
+ writingLong:"Opinion essay: should remote workers pay taxes where they live or where their employer is? Present both sides. (180–220 palavras)",
+ roleplay:{role:"a colleague with the opposite opinion",scenario:"a polite debate about a public policy topic; challenge my arguments and make me defend them"},
+ micro:"Ao ler uma manchete, pense: “If I were in charge, I would…”.",
+ recording:"Em 2 minutos, defenda uma opinião e depois o argumento contrário.",
+ vocab:"government=governo|policy=política (diretriz)|politics=política (atividade)|election=eleição|to vote=votar|voter=eleitor|candidate=candidato|campaign=campanha|party=partido|parliament=parlamento|law=lei|bill=projeto de lei|to pass a law=aprovar uma lei|to enforce=fazer cumprir|regulation=regulamentação|tax=imposto|budget=orçamento|public spending=gasto público|economy=economia|inflation=inflação|unemployment=desemprego|welfare=assistência social|healthcare system=sistema de saúde|reform=reforma|debate=debate|to argue that=argumentar que|point of view=ponto de vista|in my opinion=na minha opinião|to support=apoiar|to oppose=opor-se a|controversial=polêmico|citizen=cidadão|rights=direitos|freedom=liberdade|democracy=democracia|corruption=corrupção|transparency=transparência|accountable=que presta contas|media=mídia|bias=viés|misinformation=desinformação|polarization=polarização|compromise=meio-termo; acordo|to negotiate=negociar|immigration=imigração|public opinion=opinião pública|poll=pesquisa de opinião|turnout=comparecimento às urnas|minister=ministro|mayor=prefeito|on the one hand=por um lado|on the other hand=por outro lado|whereas=enquanto que|however=no entanto|although=embora|despite=apesar de|if I were=se eu fosse|would have=teria|wouldn’t have=não teria|in hindsight=em retrospecto|to blame=culpar|consequence=consequência|trade-off=compensação; escolha com custo|to tackle=enfrentar (um problema)|stance=posição|grassroots=de base (popular)|lawmaker=legislador|to run for office=candidatar-se|landslide=vitória esmagadora|to step down=renunciar|policy-maker=formulador de políticas"
+},
+{
+ n:12, emoji:"🤝", theme:"Carreira e negociação",
+ why:"Fechamento do ciclo: contar o que os outros disseram e negociar condições, as duas coisas que mais pesam no seu objetivo profissional.",
+ grammar:{topic:"Reported speech (discurso indireto) + revisão",
+  explain:"Ao relatar, o tempo verbal costuma recuar um passo (is → was, will → would, has done → had done) quando o que foi dito já não vale mais ou está distante. Say something; tell someone something. Perguntas relatadas usam ordem afirmativa: “He asked if I was available.”",
+  examples:["She said (that) the budget had been approved.","He told me he would send the contract on Monday.","They asked whether we could deliver by March."],
+  murphy:"Procure as unidades de “reported speech”, “reported questions” e “say and tell”."},
+ resources:[
+  {name:"Business Vocabulary in Use (Bill Mascull)",desc:"Unidades sobre negociação, carreira e contratos."},
+  {name:"Business English Pod",desc:"Episódios sobre negociação e entrevistas."},
+  {name:"Ludwig",desc:"Valide frases de e-mail de negociação.",url:"https://ludwig.guru"},
+  {name:"EF SET",desc:"Teste gratuito para medir sua evolução no fim do ciclo. Confirme se continua gratuito.",url:"https://www.efset.org"}],
+ barrel:[
+  {type:"Vídeo",title:"Frases de negociação em inglês",q:"negotiation phrases business english"},
+  {type:"Vídeo",title:"Entrevista de emprego em inglês",q:"job interview in english questions answers"},
+  {type:"Vídeo",title:"Reported speech explicado",q:"reported speech explained"},
+  {type:"Texto",title:"Como negociar valor como freelancer",q:"how to negotiate rates freelancer"}],
+ shadow:{what:"Um diálogo de negociação em inglês.",q:"business negotiation role play english"},
+ interaction:"Pause um vídeo de entrevista e responda à pergunta do entrevistador antes do candidato.",
+ reading:"Um artigo sobre negociação de contratos. Reescreva 5 falas diretas em discurso indireto.",
+ writing:"Report a recent meeting: what each person said, asked and promised. (120–150 palavras)",
+ writingLong:"E-mail to a potential client: present your value, propose your rate and terms, and suggest next steps. (180–220 palavras)",
+ roleplay:{role:"a client who wants to pay less",scenario:"we negotiate rate, scope and deadline for a data project; push back on my rate and make me justify it"},
+ micro:"Depois de cada reunião real, resuma para si mesmo em inglês: “My manager said that…, the client asked if…”.",
+ recording:"Em 2 minutos, apresente-se profissionalmente como numa entrevista. Compare com a gravação da semana 1.",
+ vocab:"career path=trajetória profissional|promotion=promoção|to be promoted=ser promovido|raise=aumento salarial|rate=valor cobrado|hourly rate=valor por hora|contract=contrato|to renew=renovar|terms=termos; condições|negotiation=negociação|offer=oferta|counteroffer=contraproposta|to accept=aceitar|to turn down=recusar|benefits=benefícios|perks=vantagens|performance review=avaliação de desempenho|strength=ponto forte|weakness=ponto fraco|to highlight=destacar|track record=histórico comprovado|expertise=especialização|resume=currículo|cover letter=carta de apresentação|job interview=entrevista de emprego|interviewer=entrevistador|to apply for=candidatar-se a|application=candidatura|recruiter=recrutador|hiring manager=gestor da vaga|freelance=autônomo|self-employed=por conta própria|invoice=fatura|client base=carteira de clientes|to pitch=apresentar uma proposta|to add value=agregar valor|leverage=poder de barganha|win-win=bom para os dois lados|deal=acordo; negócio|to close a deal=fechar negócio|to commit to=comprometer-se com|commitment=compromisso|he said that=ele disse que|she told me that=ela me disse que|they asked if=perguntaram se|he mentioned that=ele mencionou que|she explained that=ela explicou que|to claim=afirmar|to admit=admitir|to deny=negar|to promise=prometer|to agree to=concordar em|reference=referência|leadership=liderança|growth=crescimento|opportunity=oportunidade|to push back=contestar; resistir|bottom line=valor mínimo; essencial|to meet halfway=chegar a um meio-termo|non-negotiable=inegociável|notice period=aviso prévio|scope creep=aumento não previsto do escopo|deliverable=entregável|payment terms=condições de pagamento|upfront=adiantado|to sign=assinar|clause=cláusula|to draft=redigir rascunho|to follow through=cumprir até o fim|to stand out=destacar-se|to land a job=conseguir um emprego"
+}
+];
+const DAYS=["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"];
+const DAYNAMES=["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"];
+const TOTAL=WEEKS.length*7;
+const yt=q=>"https://www.youtube.com/results?search_query="+encodeURIComponent(q);
+const ANKI="https://apps.ankiweb.net";
+const CORRECT_PROMPT="Correct my text. For each error, show: original → corrected → a one-line grammar explanation. Then rewrite the whole text the way a C1 professional would. Do not change my meaning.\n\n[cole seu texto aqui]";
+const rolePrompt=w=>`Let’s do a roleplay. You are ${w.roleplay.role}. Scenario: ${w.roleplay.scenario}. Speak naturally at B1–B2 level, one turn at a time, and wait for my answer. Don’t correct me during the conversation. At the end, list my 5 most important mistakes with corrections and 5 phrases a native speaker would have used.`;
+const DEADTIME=[
+ "Tempos mortos: na corrida ou no carro, ouça um item 🟢 do barril.",
+ "Tempos mortos: repita o áudio do shadowing de segunda enquanto faz tarefas de casa.",
+ "Tempos mortos: cozinhe assistindo a um vídeo em inglês do barril.",
+ "Tempos mortos: no fim do bloco das 13h30, ensaie 1 minuto em voz alta o que vai reportar às 15h.",
+ "Tempos mortos: leia 5 minutos de transcrição ou e-mail de trabalho com olhar de minerador.",
+ "Tempos mortos: um episódio de podcast do tema da semana, sem se preocupar em entender tudo.",
+ "Tempos mortos: uma série em inglês com legenda em inglês, só por diversão."
+];
+
+WEEKS.forEach(w=>{w.words=w.vocab.split("|").map(p=>{const [en,pt]=p.split("=");return{en:en.trim(),pt:pt.trim()}})});
+
+function dayWords(w,d){const per=Math.ceil(w.words.length/7);return w.words.slice(d*per,(d+1)*per)}
+
+function plan(w,d){
+ const nxt=WEEKS[w.n]||null;
+ const words=dayWords(w,d);
+ const ankiTask=(min)=>({min,title:"Anki: vocabulário do dia",res:"Anki",url:ANKI,how:"Crie cards de frase inteira com estas palavras (frase de exemplo no verso, não só a tradução). Depois faça as revisões pendentes. Limite: 10 novos por dia. Pode ser feito no ginásio, entre as séries, ou à noite entre reuniões.",words});
+ switch(d){
+ case 0:return{title:"Shadowing e mineração",tasks:[
+  {min:10,title:"Shadowing",res:w.shadow.what,url:yt(w.shadow.q),how:"Ouça 2 vezes, leia a transcrição, depois fale junto e um pouco atrás do áudio. O foco é ritmo e entonação. Grave a última tentativa."},
+  {min:10,title:"Mineração de frases",res:"O mesmo áudio + Language Reactor ou transcrição",url:"https://www.languagereactor.com",how:`Escolha 3 a 5 frases com exatamente uma novidade cada. Dê preferência às que usam ${w.grammar.topic.toLowerCase()}.`},
+  ankiTask(10)]};
+ case 1:return{title:"Gramática guiada por erros + escrita",tasks:[
+  {min:15,title:`Gramática: ${w.grammar.topic}`,res:"English Grammar in Use (Murphy) + o quadro de gramática desta semana",how:`${w.grammar.murphy} Faça os exercícios só das partes em que você tem dúvida. Se o seu log de erros tiver um erro repetido de outro tema, ele tem prioridade.`},
+  {min:15,title:"Escrita com correção por IA",res:"Claude ou outra IA",how:w.writing,prompt:CORRECT_PROMPT,after:"Copie os erros para o log de erros: frase errada → frase correta → regra em uma linha."}]};
+ case 2:return{title:"Interação com conteúdo",tasks:[
+  {min:15,title:"Pausar e responder",res:"Conteúdo do barril que você já assistiu",how:w.interaction+" Toda vez que travar, anote “como eu digo…?” e pesquise no Ludwig, no YouGlish ou com a IA."},
+  ankiTask(10),
+  {min:5,title:"Micro-hábito falado",res:"Você mesmo",how:w.micro}]};
+ case 3:return{title:"Leitura ativa",tasks:[
+  {min:15,title:"Leitura ativa",res:"Artigo do barril (🟡)",how:w.reading},
+  {min:5,title:"Mineração da leitura",res:"Cambridge Dictionary",url:"https://dictionary.cambridge.org",how:"Escolha 3 frases do texto e confirme o sentido no dicionário monolíngue antes de levar para o Anki."},
+  ankiTask(10)]};
+ case 4:return{title:"Roleplay profissional",tasks:[
+  {min:20,title:"Simulação com IA em modo voz",res:"Claude ou outra IA (modo voz)",how:"Fale, não digite. Se travar, reformule com palavras simples em vez de voltar para o português.",prompt:rolePrompt(w)},
+  ankiTask(10)]};
+ case 5:return{title:"Escrita longa + log de erros",tasks:[
+  {min:15,title:"Escrita longa com correção",res:"Claude ou outra IA",how:w.writingLong,prompt:CORRECT_PROMPT},
+  {min:5,title:"Revisão do log de erros",res:"Seu log de erros",how:"Releia os erros da semana. Marque o que mais se repetiu: ele vira prioridade da gramática da próxima terça."},
+  ankiTask(10)]};
+ default:return{title:"Curadoria do barril + gravação",tasks:[
+  {min:15,title:"Curadoria do barril",res:nxt?`Próxima semana: ${nxt.theme}`:"Próximo ciclo",how:nxt?`Monte a pasta da próxima semana em 3 níveis (🟢 fácil, 🟡 i+1, 🔴 desafio), com a duração no título. Sugestões de busca: ${nxt.barrel.map(b=>b.title).join("; ")}.`:"Faça o teste de nivelamento (EF SET ou Cambridge) e compare com o início. Depois decida com base no resultado se repete temas ou avança para conteúdo nativo mais difícil."},
+  ankiTask(10),
+  {min:5,title:"Gravação da semana",res:"Gravador do celular",how:w.recording+" Guarde todas as gravações numa pasta para comparar a evolução."}]};
+ }
+}
+
+/* ---------- state ---------- */
+let done={};
+let cur=0;
+let openDay=null;
+let store=null;
+const LS="roteiro-ingles-c1";
+function lsLoad(){try{const v=localStorage.getItem(LS);if(v)done=JSON.parse(v)||{}}catch(e){}}
+function lsSave(){try{localStorage.setItem(LS,JSON.stringify(done))}catch(e){}}
+let writing=false,pending=false;
+async function persist(){
+ lsSave();
+ if(!store)return;
+ if(writing){pending=true;return}
+ writing=true;
+ try{await store.set({done,updated:new Date().toISOString()});setSave("Progresso salvo na sua conta")}
+ catch(e){setSave("Não foi possível salvar na conta. O progresso fica neste navegador.");if(e&&e.code==="invalid_argument")store=null}
+ writing=false;
+ if(pending){pending=false;persist()}
+}
+function setSave(t){document.getElementById("saveState").textContent=t}
+const key=(w,d)=>`w${w}d${d}`;
+function toggle(w,d){const k=key(w,d);if(done[k])delete done[k];else done[k]=true;renderAll();persist();toast(done[k]?"Dia marcado como concluído":"Marcação removida")}
+
+/* ---------- render ---------- */
+function count(){return Object.keys(done).filter(k=>k.startsWith("w")&&done[k]).length}
+function el(tag,attrs={},...kids){const e=document.createElement(tag);for(const[k,v]of Object.entries(attrs)){if(k==="class")e.className=v;else if(k.startsWith("on"))e.addEventListener(k.slice(2),v);else if(v!==null&&v!==undefined)e.setAttribute(k,v)}for(const c of kids.flat()){if(c==null)continue;e.append(c.nodeType?c:document.createTextNode(c))}return e}
+
+function renderTop(){
+ const c=count(),p=Math.round(c/TOTAL*100);
+ document.getElementById("pctNum").textContent=p+"%";
+ document.getElementById("pctTxt").textContent=`${c} de ${TOTAL} dias concluídos`;
+ document.getElementById("pctBar").style.width=p+"%";
+ const s=document.getElementById("stamps");s.replaceChildren();
+ WEEKS.forEach((w,i)=>{
+  const col=el("div",{class:"col"+(i===cur?" cur":"")});
+  col.append(el("button",{class:"lbl",type:"button",onclick:()=>select(i)},"S"+w.n));
+  for(let d=0;d<7;d++){
+   const isD=!!done[key(w.n,d)];
+   col.append(el("button",{class:"sq"+(isD?" done":""),type:"button","aria-label":`Semana ${w.n}, ${DAYNAMES[d]}${isD?", concluído":""}`,title:`S${w.n} · ${DAYS[d]}`,onclick:()=>{select(i);openDay=d;renderWeek();document.getElementById("day-"+d)?.scrollIntoView({block:"center",behavior:"smooth"})}}));
+  }
+  s.append(col);
+ });
+}
+function renderTabs(){
+ const t=document.getElementById("tabs");t.replaceChildren();
+ WEEKS.forEach((w,i)=>{
+  let c=0;for(let d=0;d<7;d++)if(done[key(w.n,d)])c++;
+  t.append(el("button",{class:"tab",role:"tab",type:"button","aria-selected":String(i===cur),onclick:()=>select(i)},`${w.emoji} Semana ${w.n}`,el("small",{},`${c}/7`)));
+ });
+ const sel=t.children[cur];if(sel)t.scrollLeft=sel.offsetLeft-t.clientWidth/2+sel.clientWidth/2;
+}
+function copy(text){
+ const ok=()=>toast("Copiado");
+ try{if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(ok,()=>fallback(text));return}}catch(e){}
+ fallback(text);
+}
+function fallback(text){
+ const ta=document.createElement("textarea");ta.value=text;document.body.append(ta);ta.select();
+ let ok=false;try{ok=document.execCommand("copy")}catch(e){}
+ ta.remove();toast(ok?"Copiado":"Não foi possível copiar. Selecione o texto manualmente.");
+}
+let tt;function toast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),1600)}
+
+function renderWeek(){
+ const w=WEEKS[cur];const m=document.getElementById("week");m.replaceChildren();
+ let c=0;for(let d=0;d<7;d++)if(done[key(w.n,d)])c++;
+ const wb=el("div",{class:"bar"},el("i",{style:`width:${Math.round(c/7*100)}%`}));
+ m.append(el("div",{class:"week-top"},el("div",{class:"emoji","aria-hidden":"true"},w.emoji),
+  el("div",{},el("div",{class:"kicker"},`Semana ${w.n} de ${WEEKS.length}`),el("h2",{},w.theme),el("p",{},w.why),
+   el("div",{class:"wk-bar"},wb,`${c} de 7 dias`))));
+
+ const left=el("div",{}),right=el("div",{});
+ // days
+ const days=el("section",{class:"block"},el("h3",{},"Atividade de cada dia"));
+ for(let d=0;d<7;d++){
+  const p=plan(w,d),isD=!!done[key(w.n,d)],isO=openDay===d;
+  const mins=p.tasks.reduce((a,t)=>a+t.min,0);
+  const body=el("div",{class:"day-body",id:`body-${d}`});
+  p.tasks.forEach(t=>{
+   const box=el("div",{},el("h4",{},t.title),
+    el("div",{class:"res"},"Recurso: ",t.url?el("a",{href:t.url,target:"_blank",rel:"noopener"},t.res):t.res),
+    el("p",{},t.how));
+   if(t.words){box.append(el("div",{class:"daywords"},t.words.map(x=>el("span",{title:x.pt},x.en))))}
+   if(t.prompt){const pr=el("div",{class:"prompt"},el("div",{},t.prompt),el("button",{class:"btn",type:"button",onclick:()=>copy(t.prompt)},"Copiar prompt"));box.append(pr)}
+   if(t.after)box.append(el("p",{class:"note"},t.after));
+   body.append(el("div",{class:"task"},el("div",{class:"min"},String(t.min),el("small",{},"min")),box));
+  });
+  body.append(el("p",{class:"extra"},DEADTIME[(d+w.n)%7]));
+  const row=el("div",{class:"day-row"},
+   el("button",{class:"check",type:"button","aria-pressed":String(isD),"aria-label":`Marcar ${DAYNAMES[d]} como concluído`,onclick:()=>toggle(w.n,d)}),
+   el("button",{class:"day-open",type:"button","aria-expanded":String(isO),"aria-controls":`body-${d}`,onclick:()=>{openDay=openDay===d?null:d;renderWeek()}},
+    el("span",{class:"d"},DAYS[d]),el("span",{class:"t"},p.title),el("span",{class:"m"},mins+" min"),el("span",{class:"chev","aria-hidden":"true"})));
+  days.append(el("div",{class:"day"+(isD?" isdone":"")+(isO?" open":""),id:"day-"+d},row,body));
+ }
+ left.append(days);
+
+ // vocab
+ const grid=el("div",{class:"vocab",id:"vgrid"},w.words.map(x=>el("button",{class:"w",type:"button",onclick:e=>e.currentTarget.classList.toggle("flip")},el("b",{},x.en),el("i",{},x.pt))));
+ const tsv=w.words.map(x=>`${x.en}\t${x.pt}`).join("\n");
+ const showBtn=el("button",{class:"btn",type:"button",onclick:()=>{grid.classList.toggle("show");showBtn.textContent=grid.classList.contains("show")?"Esconder traduções":"Mostrar traduções"}},"Mostrar traduções");
+ left.append(el("section",{class:"block"},el("h3",{},`Vocabulário da semana (${w.words.length})`),
+  el("p",{class:"note"},"Toque numa palavra para ver a tradução. Tente lembrar antes de virar. As palavras já estão divididas pelos dias da semana."),
+  el("div",{class:"vocab-tools"},showBtn,el("button",{class:"btn",type:"button",onclick:()=>copy(tsv)},"Copiar lista para o Anki")),
+  grid,
+  el("p",{class:"note"},"A lista é copiada como texto separado por tabulação (inglês, português), formato que o Anki aceita em Arquivo → Importar. Prefira transformar cada palavra numa frase sua.")));
+
+ // grammar
+ right.append(el("section",{class:"block"},el("h3",{},"Gramática da semana"),
+  el("div",{class:"card grammar"},el("h4",{},w.grammar.topic),el("p",{},w.grammar.explain),
+   el("ul",{},w.grammar.examples.map(x=>el("li",{},x))),el("p",{class:"note"},w.grammar.murphy))));
+ // resources
+ right.append(el("section",{class:"block"},el("h3",{},"Recursos recomendados"),
+  el("div",{class:"card"},el("ul",{class:"res-list"},w.resources.map(r=>el("li",{},el("b",{},r.url?el("a",{href:r.url,target:"_blank",rel:"noopener"},r.name):r.name),el("div",{class:"note"},r.desc)))))));
+ // barrel
+ right.append(el("section",{class:"block"},el("h3",{},"Barril de conteúdos"),
+  el("div",{class:"card"},el("ul",{class:"res-list"},w.barrel.map(b=>el("li",{},el("span",{class:"tag"},b.type),b.q?el("a",{href:yt(b.q),target:"_blank",rel:"noopener"},b.title):b.title))),
+   el("p",{class:"note"},"Separe em 🟢 fácil, 🟡 i+1 e 🔴 desafio. Se precisar pausar mais de uma vez a cada 30 segundos, o item é 🔴."))));
+ m.append(el("div",{class:"layout"},left,right));
+}
+const PREP=[
+ {t:"Fazer o teste de nível",d:"Anote o resultado para comparar no fim do ciclo. Confirme se o teste continua gratuito.",url:"https://www.efset.org"},
+ {t:"Mudar o idioma do iPhone para inglês",d:"Ajustes → Geral → Idioma e Região. A Siri tem configuração separada. Os menus podem ter mudado na sua versão do iOS."},
+ {t:"Mudar o idioma do computador, do navegador e do streaming",d:"Na Netflix e no YouTube, legendas em inglês, não em português."},
+ {t:"Instalar o Anki",d:"No computador e no celular. O AnkiWeb funciona no navegador; o app de iPhone (AnkiMobile) é pago, pelo que sei. Confirme na App Store.",url:"https://apps.ankiweb.net"},
+ {t:"Instalar o Language Reactor no navegador",d:"Para legendas duplas e mineração de frases no YouTube e na Netflix.",url:"https://www.languagereactor.com"},
+ {t:"Treinar os algoritmos",d:"YouTube: limpe ou pause o histórico e assista só inglês por 2 semanas, marcando “Não tenho interesse” no que vier em português. Siga criadores dos seus 8 temas nas redes."},
+ {t:"Montar o barril da Semana 1",d:"Playlists “Tech 🟢”, “Tech 🟡”, “Tech 🔴” e uma fila de podcasts para o ginásio. Use as buscas da Semana 1."},
+ {t:"Criar o log de erros",d:"Uma nota no celular com três colunas: frase errada → frase correta → regra em uma linha."},
+ {t:"Gravar a gravação zero",d:"2 minutos falando sobre você e o seu trabalho. É o ponto de partida para comparar daqui a 12 semanas."}
+];
+let prepOpen=null;
+function renderPrep(){
+ const s=document.getElementById("prep");if(!s)return;
+ const c=PREP.filter((_,i)=>done["p"+i]).length,all=c===PREP.length;
+ const det=el("details",{});det.open=prepOpen===null?!all:prepOpen;
+ det.addEventListener("toggle",()=>{prepOpen=det.open});
+ det.append(el("summary",{},"Preparação: faça antes da Semana 1",el("small",{},`${c} de ${PREP.length}`)));
+ const ul=el("ul",{class:"prep-list"});
+ PREP.forEach((p,i)=>{const k="p"+i,ok=!!done[k];
+  ul.append(el("li",{class:"prep-item"+(ok?" ok":"")},
+   el("button",{class:"check",type:"button","aria-pressed":String(ok),"aria-label":"Marcar: "+p.t,onclick:()=>{if(done[k])delete done[k];else done[k]=true;renderPrep();persist()}}),
+   el("div",{},el("b",{},p.url?el("a",{href:p.url,target:"_blank",rel:"noopener"},p.t):p.t),el("p",{class:"note"},p.d))))});
+ det.append(ul);s.replaceChildren(det);
+}
+function goNext(){
+ for(let i=0;i<WEEKS.length;i++)for(let d=0;d<7;d++)if(!done[key(WEEKS[i].n,d)]){
+  cur=i;openDay=d;try{history.replaceState(null,"","#semana-"+WEEKS[i].n)}catch(e){}
+  renderAll();document.getElementById("day-"+d)?.scrollIntoView({block:"center",behavior:"smooth"});return}
+ toast("Ciclo 1 concluído");
+}
+function select(i){cur=i;openDay=null;try{history.replaceState(null,"","#semana-"+WEEKS[i].n)}catch(e){}renderAll()}
+function renderAll(){renderTop();renderPrep();renderTabs();renderWeek()}
+
+/* ---------- init ---------- */
+(function(){
+ const h=location.hash.match(/^#semana-(\d+)$/);if(h){const n=+h[1];if(n>=1&&n<=WEEKS.length)cur=n-1}
+ lsLoad();renderAll();
+ document.getElementById("nextBtn").addEventListener("click",goNext);
+ setSave("Progresso salvo neste navegador");
+ window.addEventListener("hashchange",()=>{const h=location.hash.match(/^#semana-(\d+)$/);if(h){const n=+h[1];if(n>=1&&n<=WEEKS.length&&n-1!==cur){cur=n-1;openDay=null;renderAll()}}});
+ if(!window.claude||!window.claude.use)return;
+ (async()=>{
+  try{
+   const [db,user]=await Promise.all([window.claude.use("db"),window.claude.use("user")]);
+   if(!db||!user)return;
+   const id=await user.id();if(!id)return;
+   const ref=db.doc("data/users/"+id+"/progress");
+   setSave("Sincronizando com sua conta…");
+   let first=true;
+   const timer=setTimeout(()=>setSave("Sua conta ainda não respondeu. O progresso fica neste navegador por enquanto."),10000);
+   ref.onSnapshot(snap=>{
+    if(!snap.metadata.fromCache)clearTimeout(timer);
+    if(snap.exists){const d=snap.data();if(d&&d.done&&!snap.metadata.hasPendingWrites){done={...d.done};lsSave();renderAll()}}
+    else if(first&&!snap.metadata.fromCache&&count()>0){store=ref;persist()}
+    store=ref;first=false;
+    if(!snap.metadata.fromCache)setSave("Progresso salvo na sua conta");
+   },()=>{clearTimeout(timer);store=null;setSave("Progresso salvo neste navegador")});
+  }catch(e){}
+ })();
+})();
+</script>
+</body>
+</html>
