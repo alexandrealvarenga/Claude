@@ -1,0 +1,15 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars

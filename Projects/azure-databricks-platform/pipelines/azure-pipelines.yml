@@ -1,0 +1,255 @@
+trigger:
+  branches:
+    include:
+      - main
+      - develop
+  paths:
+    exclude:
+      - "*.md"
+      - "docs/*"
+
+pr:
+  branches:
+    include:
+      - main
+      - develop
+  paths:
+    exclude:
+      - "*.md"
+      - "docs/*"
+
+variables:
+  - group: azure-platform-variables
+  - name: pythonVersion
+    value: "3.11"
+  - name: ruffVersion
+    value: "0.6.0"
+  - name: pytestVersion
+    value: "8.3.0"
+
+stages:
+  - stage: lint_and_format
+    displayName: Lint and Format
+    jobs:
+      - job: lint
+        displayName: Ruff Lint
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: $(pythonVersion)
+
+          - script: |
+              pip install ruff==$(ruffVersion)
+              ruff check src/ tests/ --output-format=github
+            displayName: Install and run ruff
+
+          - publish: coverage
+            artifact: coverage
+
+  - stage: unit_tests
+    displayName: Unit Tests
+    jobs:
+      - job: tests
+        displayName: Pytest Tests
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: $(pythonVersion)
+
+          - script: |
+              pip install -e ".[dev]"
+              pip install pyspark==3.5.0
+              pytest tests/unit/ -v --cov=platform --cov-report=xml --cov-report=html
+            displayName: Install and run pytest
+
+          - publish: coverage.xml
+            artifact: test-coverage
+
+          - task: PublishCodeCoverageResults@1
+            inputs:
+              codeCoverageTool: Cobertura
+              summaryFileLocation: $(System.DefaultWorkingDirectory)/coverage.xml
+
+  - stage: bundle_validation
+    displayName: Bundle Validation
+    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
+    jobs:
+      - job: validate_bundles
+        displayName: Validate Databricks Bundles
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: $(pythonVersion)
+
+          - script: |
+              pip install databricks-bundle
+              for env in dev test prod; do
+                echo "Validating bundle for $env..."
+                databricks bundle validate bundles/$env/resources.yml
+              done
+            displayName: Validate bundles
+
+  - stage: terraform_validation
+    displayName: Terraform Validation
+    condition: and(succeeded(), contains(changeset, 'infrastructure/'))
+    jobs:
+      - job: terraform_plan
+        displayName: Terraform Plan
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: TerraformInstaller@0
+            inputs:
+              terraformVersion: 1.7.0
+
+          - task: TerraformInit@0
+            inputs:
+              workingDirectory: infrastructure
+              backendType: local
+
+          - task: TerraformValidate@0
+            inputs:
+              workingDirectory: infrastructure
+
+          - task: TerraformPlan@0
+            inputs:
+              workingDirectory: infrastructure
+              environmentServiceName: $(azureServiceConnection)
+              runCondition: always()
+
+  - stage: security_scan
+    displayName: Security Scan
+    jobs:
+      - job: secret_scan
+        displayName: Secret Scanning
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: PythonScript@0
+            inputs:
+              script: |
+                pip install detect-secrets
+                detect-secrets scan --output .secrets.baseline
+                detect-secrets audit .secrets.baseline || true
+            displayName: Scan for secrets
+
+          - publish: .secrets.baseline
+            artifact: security-scan
+
+  - stage: deploy_dev
+    displayName: Deploy to Dev
+    dependsOn:
+      - lint_and_format
+      - unit_tests
+      - security_scan
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+    variables:
+      - group: dataplatform-dev-variables
+    jobs:
+      - deployment: deploy_dev
+        pool:
+          vmImage: ubuntu-latest
+        environment: dev
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: UsePythonVersion@0
+                  inputs:
+                    versionSpec: $(pythonVersion)
+
+                - script: |
+                    pip install databricks-cli
+                    databricks configure --host $(databricksHost)
+                    databricks bundle deploy dev --auto-approve
+                  displayName: Deploy Databricks bundle
+
+                - script: |
+                    cd infrastructure
+                    terraform init -backend-config=environment=dev
+                    terraform apply -var-file=environments/dev.tfvars -var-file=environments/common.tfvars -auto-approve
+                  displayName: Deploy infrastructure
+                  condition: and(succeeded(), contains(changeset, 'infrastructure/'))
+
+  - stage: deploy_test
+    displayName: Deploy to Test
+    dependsOn:
+      - deploy_dev
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+    variables:
+      - group: dataplatform-test-variables
+    jobs:
+      - deployment: deploy_test
+        pool:
+          vmImage: ubuntu-latest
+        environment: test
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: UsePythonVersion@0
+                  inputs:
+                    versionSpec: $(pythonVersion)
+
+                - script: |
+                    pip install databricks-cli
+                    databricks configure --host $(databricksHost)
+                    databricks bundle deploy test --auto-approve
+                  displayName: Deploy Databricks bundle
+
+  - stage: approval_prod
+    displayName: Approval for Production
+    dependsOn:
+      - deploy_test
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - deployment: wait_for_approval
+        pool:
+          server
+        environment: prod
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: ManualIntervention@0
+                  inputs:
+                    instructions: "Please approve production deployment"
+
+  - stage: deploy_prod
+    displayName: Deploy to Production
+    dependsOn:
+      - approval_prod
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    variables:
+      - group: dataplatform-prod-variables
+    jobs:
+      - deployment: deploy_prod
+        pool:
+          vmImage: ubuntu-latest
+        environment: prod
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: UsePythonVersion@0
+                  inputs:
+                    versionSpec: $(pythonVersion)
+
+                - script: |
+                    pip install databricks-cli
+                    databricks configure --host $(databricksHost)
+                    databricks bundle deploy prod --auto-approve
+                  displayName: Deploy Databricks bundle
+
+                - script: |
+                    cd infrastructure
+                    terraform init -backend-config=environment=prod
+                    terraform apply -var-file=environments/prod.tfvars -var-file=environments/common.tfvars -auto-approve
+                  displayName: Deploy infrastructure
+                  condition: and(succeeded(), contains(changeset, 'infrastructure/'))

@@ -1,0 +1,153 @@
+bundle:
+  name: dataplatform-prod
+  target: prod
+
+workspace:
+  host: ${workspace_host}
+  azure_workspace_resource_id: ${workspace_resource_id}
+
+resources:
+  jobs:
+    bronze_ingestion_job:
+      name: ${bundle.target}-bronze-ingestion
+      job_clusters:
+        - job_cluster_key: bronze_cluster
+          new_cluster:
+            spark_version: 15.4.x-cpu-ml-scala2_12
+            node_type_id: Standard_D8s_v5
+            num_workers: 4
+            azure_attributes:
+              first_on_demand: 1
+              availability: SPOT_WITH_FALLBACK_AZURE
+              spot_bid_max_price: -1
+            spark_conf:
+              spark.databricks.cluster.profile: serverless
+              spark.databricks.delta.properties.default.enabled: "true"
+            custom_tags:
+              Bundle: dataplatform
+              Environment: prod
+      notebook_task:
+        notebook_path: /Workspace/Platform/Bronze/Ingestion
+        base_parameters:
+          environment: prod
+          pipeline_run_id: "{{ pipeline.run_id }}"
+      trigger:
+        paused: true
+      permissions:
+        - level: CAN_VIEW
+          group_name: platform-readers
+        - level: CAN_MANAGE_RUN
+          group_name: platform-engineers
+
+    silver_transformation_job:
+      name: ${bundle.target}-silver-transformation
+      job_clusters:
+        - job_cluster_key: silver_cluster
+          new_cluster:
+            spark_version: 15.4.x-cpu-ml-scala2_12
+            node_type_id: Standard_D16s_v5
+            num_workers: 8
+            azure_attributes:
+              first_on_demand: 1
+              availability: SPOT_WITH_FALLBACK_AZURE
+              spot_bid_max_price: -1
+            spark_conf:
+              spark.databricks.cluster.profile: serverless
+              spark.databricks.delta.properties.default.enabled: "true"
+            custom_tags:
+              Bundle: dataplatform
+              Environment: prod
+      depends_on:
+        - bronze_ingestion_job
+      notebook_task:
+        notebook_path: /Workspace/Platform/Silver/Transformation
+        base_parameters:
+          environment: prod
+      trigger:
+        paused: true
+      permissions:
+        - level: CAN_VIEW
+          group_name: platform-readers
+        - level: CAN_MANAGE_RUN
+          group_name: platform-engineers
+
+    gold_aggregation_job:
+      name: ${bundle.target}-gold-aggregation
+      job_clusters:
+        - job_cluster_key: gold_cluster
+          new_cluster:
+            spark_version: 15.4.x-cpu-ml-scala2_12
+            node_type_id: Standard_D16s_v5
+            num_workers: 8
+            azure_attributes:
+              first_on_demand: 1
+              availability: SPOT_WITH_FALLBACK_AZURE
+              spot_bid_max_price: -1
+            spark_conf:
+              spark.databricks.cluster.profile: serverless
+              spark.databricks.delta.properties.default.enabled: "true"
+            custom_tags:
+              Bundle: dataplatform
+              Environment: prod
+      depends_on:
+        - silver_transformation_job
+      notebook_task:
+        notebook_path: /Workspace/Platform/Gold/Aggregation
+        base_parameters:
+          environment: prod
+      trigger:
+        paused: true
+      permissions:
+        - level: CAN_VIEW
+          group_name: analytics-team
+        - level: CAN_MANAGE_RUN
+          group_name: platform-engineers
+
+  pipelines:
+    bronze_to_silver_pipeline:
+      name: ${bundle.target}-bronze-to-silver
+      catalog: prod
+      target: silver
+      bronze:
+        - source: prod.bronze.raw_data
+          queries:
+            - "SELECT * FROM source WHERE _metadata_active = true"
+      notebooks:
+        - /Workspace/Platform/Silver/Transformation
+      trigger:
+        schedule: "0 0 * * *"
+        paused: true
+      channel: CURRENT
+      edition: ADVANCED
+      photon: false
+      serverless:
+        enabled: true
+      notifications:
+        on_success:
+          - email:
+              users:
+                - platform-team@example.com
+        on_failure:
+          - email:
+              users:
+                - platform-team@example.com
+
+    silver_to_gold_pipeline:
+      name: ${bundle.target}-silver-to-gold
+      catalog: prod
+      target: gold
+      source: prod.silver.curated
+      notebooks:
+        - /Workspace/Platform/Gold/Aggregation
+      trigger:
+        schedule: "0 1 * * *"
+        paused: true
+      notifications:
+        on_success:
+          - email:
+              users:
+                - platform-team@example.com
+        on_failure:
+          - email:
+              users:
+                - platform-team@example.com

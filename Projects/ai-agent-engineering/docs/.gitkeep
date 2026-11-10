@@ -1,0 +1,10 @@
+# Documentation
+
+This directory contains the project documentation.
+
+## Structure
+
+- `architecture/` - Architecture decision records and diagrams
+- `api/` - API documentation
+- `guides/` - User and developer guides
+- `runbooks/` - Operational runbooks
